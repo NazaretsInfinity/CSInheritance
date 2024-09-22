@@ -8,6 +8,8 @@ namespace CSInheritance
 {
     internal class Teacher : Human
     {
+        static readonly int SPECIALITY = 24;
+        static readonly int EXPERIENCE = 10;
         public string Speciality { get; set; }
         public uint Experience {  get; set; }
 
@@ -34,7 +36,20 @@ namespace CSInheritance
 
         public override string ToString()
         {
-            return base.ToString() + $", {Speciality} {Experience}";
+            return base.ToString() + $" {Speciality.PadRight(SPECIALITY)} {Experience}";
+        }
+
+        public override string ToFileString()
+        {
+            return base.ToFileString() + $"{Speciality}, {Experience}";
+        }
+
+        public override Human Init(string[] values)
+        {
+            base.Init(values);
+            Speciality = values[4];
+            Experience = Convert.ToUInt32(values[5]);
+            return this;
         }
     }
 }

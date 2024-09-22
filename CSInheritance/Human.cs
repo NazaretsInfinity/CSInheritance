@@ -8,6 +8,10 @@ namespace CSInheritance
 {
     internal class Human
     {
+        static readonly int TYPE_WIDTH = 10;
+        static readonly int LN_WIDTH = 12;
+        static readonly int FN_WIDTH = 7;
+        static readonly int AGE = 5;
         public string LastName { get; set; }
         public string FirstName { get; set; }
         public uint Age { get; set; }
@@ -33,15 +37,29 @@ namespace CSInheritance
 
         public override string ToString()
         {
-            return  $"{GetType().Name}: {LastName} {FirstName} {Age} y/o";    
+            return  (base.ToString().Split('.').Last()+":") + $" {LastName},{FirstName},{Age}";    
         }
 
-        public virtual void Parse(string info)
+        public virtual string ToFileString()
+        {
+            return (base.ToString().Split('.').Last() + ",") + $" {LastName},{FirstName},{Age},";
+        }
+
+        public Human Parse(string info)
         {
             string[] tokens = info.Split(' ');
             LastName = tokens[1];
             FirstName = tokens[2];
             Age = Convert.ToUInt32(tokens[3]);
+            return this;
+        }
+
+        public virtual Human Init(string[] values)
+        {
+            LastName=values[1];
+            FirstName=values[2];
+            Age=Convert.ToUInt32(values[3]);
+            return this;
         }
     }
 }

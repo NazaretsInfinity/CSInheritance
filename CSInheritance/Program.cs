@@ -1,4 +1,5 @@
 ﻿#define INHERITANCE
+#define WRITE_TO_FILE
 using CSInheritance;
 using System;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Academy
@@ -13,13 +15,6 @@ namespace Academy
 
     internal class Program
     {
-        static Human HumanFactory(string type)
-        {
-            if (type.Contains("Student:"))return new Student("", "", 0, "", "", 0, 0);
-            if (type.Contains("Graduate:"))return new Graduate("", "", 0, "", "", 0, 0, "", 0);
-            if (type.Contains("Teacher:")) return new Teacher("", "", 0, "", 0);
-            return new Human();
-        }
         static void Main(string[] args)
         {
 #if INHERITANCE1
@@ -28,6 +23,7 @@ namespace Academy
             Console.WriteLine(student);
             Console.WriteLine(teacher); 
 #endif
+#if WRITE_TO_FILE
             Human tommy = new Human("Vercetty", "Tommy", 30);
             Human ricardo = new Human("Diaz", "Ricardo", 50);
 
@@ -38,42 +34,61 @@ namespace Academy
             new Graduate("Pepe", "Popo", 32, "Dragons", "DN_22", 33, 44, "Minions", 5)
             };
 
-            // SAVE
-            StreamWriter filegroup = new StreamWriter("group.txt");
+            print(group);
+            save(group, "humans.csv"); // comma separated values
+                                      // CSV - general format of files to store tablets in text files.
+                                     // READ  
+#endif
 
-            foreach (Human i in  group)
+           Human[] humans  = load("humans.csv");
+            print(humans);
+        }
+        static void print(Human[] group)
+        {
+            for (int i = 0; i < group.Length; ++i)
             {
-                filegroup.WriteLine(i.ToString());
+                Console.WriteLine($"\n{group[i].ToString()}"); //DownCast
             }
+        }
 
+        static void save(Human[] group, string filename)
+        {
+            StreamWriter filegroup = new StreamWriter(filename);
+
+            foreach (Human i in group)
+            {
+                filegroup.WriteLine(i.ToFileString()); // DownCast
+            }
             filegroup.Close();
-            Process.Start("notepad", "group.txt");
+           // Process.Start("excel", filename);
+        }
 
-            // READ
-            int am = 0;
-            StreamReader groupread = new StreamReader("group.txt");
-            while(!groupread.EndOfStream)
+        static Human[] load(string filename)
+        {
+            List<Human> list = new List<Human>();
+            StreamReader sr = new StreamReader(filename);
+            while (!(sr.EndOfStream))
             {
-                string buffer = groupread.ReadLine();
-                ++am;
+                string buffer = sr.ReadLine();
+                Console.WriteLine(buffer);
+                string[] values = buffer.Split(',');
+                list.Add(HumanFactory(values[0]).Init(values));
             }
+            sr.Close();
+            return list.ToArray();
+        }
 
-            groupread.BaseStream.Seek(0, SeekOrigin.Begin); 
-
-            Human[] humans = new Human[am];
-            for(int i = 0; i< am; ++i)
+        static Human HumanFactory(string type) // 
+        {
+            Human human = null;
+            switch (type)
             {
-               string type = groupread.ReadLine();
-                Console.WriteLine(type);
-                humans[i] = HumanFactory(type);
-                humans[i].Parse(type); 
+                case "Human": human = new Human(); break;
+                case "Student": human = new Student("", "", 0, "", "", 0, 0); break;
+                case "Teacher": human = new Teacher("", "", 0, "", 0); break;
+                case "Graduate": human = new Graduate("", "", 0, "", "", 0, 0, "", 0); break;
             }
-            groupread.ReadToEnd();
-
-            foreach (Human i in humans)
-            {
-                Console.WriteLine($"\n{i.ToString()}");
-            }
+            return human;
         }
     }
 }

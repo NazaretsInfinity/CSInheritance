@@ -29,7 +29,20 @@ namespace CSInheritance
 
         public override string ToString()
         {
-            return base.ToString() + $", {WorkTopic}:  {WorkGrade}";
+            return base.ToString() + $" {WorkTopic}  {WorkGrade}";
+        }
+
+        public override string ToFileString()
+        {
+            return base.ToFileString() + $", {WorkTopic}, {WorkGrade}";
+        }
+
+        public override Human Init(string[] values)
+        {
+            base.Init(values);
+            WorkTopic = values[8];
+            WorkGrade = Convert.ToInt32(values[9]);
+            return this;
         }
     }
 }

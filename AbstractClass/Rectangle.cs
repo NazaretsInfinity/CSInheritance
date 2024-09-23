@@ -47,7 +47,7 @@ namespace AbstractClass
         }
         public override string ToString()
         {
-           return base.ToString() +$"Sides: {Width} , {Height}";
+           return base.ToString() +$"\nSides: {Width} , {Height}";
         }
     }
 }

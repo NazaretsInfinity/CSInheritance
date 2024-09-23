@@ -43,7 +43,7 @@ namespace AbstractClass
         }
         public override string ToString()
         {
-            return base.ToString() + $"Radius: {Radius}";
+            return base.ToString() + $"\nRadius: {Radius}";
         }
     }
 }

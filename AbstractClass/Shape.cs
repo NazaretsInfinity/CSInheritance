@@ -11,7 +11,7 @@ namespace AbstractClass
 
     internal abstract class Shape
     {
-        static public Bitmap bits = new Bitmap(1000, 1000);
+        static readonly protected Bitmap bits = new Bitmap(1000, 1000);
         static readonly int Xs = 50;
         static readonly int Xg = 850;
         static readonly int Ys = 50;

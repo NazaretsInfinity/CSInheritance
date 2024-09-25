@@ -13,7 +13,7 @@ namespace AbstractClass
     {
         double side;
 
-        public double Side { get => side; set => side = value < SIZE ? SIZE : value;
+        public double Side { get => side; set => side = value > SIZE ? SIZE : value;
         }
         public EquiLateralTriangle(int x, int y, Color color, double side) : base(x, y, color)
         {

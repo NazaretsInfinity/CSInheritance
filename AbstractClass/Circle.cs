@@ -5,6 +5,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using static System.Windows.Forms.AxHost;
 
 namespace AbstractClass
 {
@@ -32,18 +34,24 @@ namespace AbstractClass
            return Math.Pow(Radius,2)*Math.PI;
         }
 
-        public override void Draw()
+        public override void Draw(PaintEventArgs e)
         {
-            Graphics buff = Graphics.FromImage(bits);
+            #region OldBones
+            //Graphics buff = Graphics.FromImage(bits);
 
-            Brush brush = new SolidBrush(Color);
+            //Brush brush = new SolidBrush(Color);
 
-            buff.FillEllipse(brush, X,Y,Radius,Radius);
-            bits.Save("Shapes.jpg");
+            //buff.FillEllipse(brush, X,Y,Radius,Radius);
+            //bits.Save("Shapes.jpg"); 
+            #endregion
+            Pen pen = new Pen(Color, 5);
+            e.Graphics.DrawEllipse(pen, X, Y, Radius, Radius);
         }
-        public override string ToString()
+        public override void Info(PaintEventArgs e)
         {
-            return base.ToString() + $"\nRadius: {Radius}";
+            Console.WriteLine($"Shape: {GetType().Name};\nPerimeter = {Perimeter()};\nArea = {Area()};");
+            Console.WriteLine($"\nRadius: {Radius}");
+            Draw(e);
         }
     }
 }

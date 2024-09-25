@@ -6,6 +6,8 @@ using System.Drawing.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using static System.Windows.Forms.AxHost;
 
 namespace AbstractClass
 {
@@ -36,18 +38,24 @@ namespace AbstractClass
 
         public override double Area() { return width * height; }
 
-        public override void Draw()
+        public override void Draw(PaintEventArgs e)
         {
-            Graphics buff = Graphics.FromImage(bits);
-            
-            Brush brush = new SolidBrush(Color);
+            #region OldBones
+            //Graphics buff = Graphics.FromImage(bits);
 
-            buff.FillRectangle(brush,X, Y, Width, Height);
-            bits.Save("Shapes.jpg");
+            //Brush brush = new SolidBrush(Color);
+            //buff.FillRectangle(brush, X, Y, Width, Height);
+            //bits.Save("Shapes.jpg"); 
+            #endregion
+
+            Pen pen = new Pen(Color,5);
+            e.Graphics.DrawRectangle(pen, X, Y, Width, Height);
         }
-        public override string ToString()
+        public override void Info(PaintEventArgs e)
         {
-           return base.ToString() +$"\nSides: {Width} , {Height}";
+            Console.WriteLine($"Shape: {GetType().Name};\nPerimeter = {Perimeter()};\nArea = {Area()};" +
+                $"\nsides: {width} , {height}");
+            Draw(e);
         }
     }
 }

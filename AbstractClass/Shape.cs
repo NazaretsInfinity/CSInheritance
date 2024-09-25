@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace AbstractClass
 {
@@ -42,14 +43,17 @@ namespace AbstractClass
             }
         }
         public Color Color { get; set; }
+        // the same name of class type and object itself. Yet!
+        // First 'Color' is in System drawing namespace
+        //The second one is in Abstract
 
         public abstract double Perimeter();
         public abstract double Area();
-        public abstract void Draw();
-        public override string ToString()
-        {
-            Draw();
-            return $"Shape: {GetType().Name};\nPerimeter = {Perimeter()};\nArea = {Area()};";
+        public abstract void Draw(PaintEventArgs e);
+        public virtual void Info(PaintEventArgs e)
+        {       
+            Console.WriteLine($"Shape: {GetType().Name};\nPerimeter = {Perimeter()};\nArea = {Area()};");
+            Draw(e);
         }
 
         public Shape(int x, int y, Color color){ X = x; Y = y; Color = color;}

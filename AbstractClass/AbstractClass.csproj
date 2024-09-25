@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="RectangularTriangle.cs" />
     <Compile Include="Circle.cs" />
     <Compile Include="EquiLateralTriangle.cs" />
     <Compile Include="IHaveHeight.cs" />

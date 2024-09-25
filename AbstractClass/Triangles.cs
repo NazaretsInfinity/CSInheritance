@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AbstractClass
 {
-    internal abstract class Triangles : Shape 
+    internal abstract class Triangles : Shape
     {
         public Triangles(int x, int y, Color color) : base(x, y, color) { }
         ~Triangles() { }

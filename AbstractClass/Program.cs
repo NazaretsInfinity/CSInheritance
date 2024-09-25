@@ -32,7 +32,8 @@ namespace AbstractClass
             Shape[] shapes = {
              new Rectangle(500, 75, Color.DarkOliveGreen, 100, 60),
             new Square(500, 150, Color.DarkKhaki, 80),
-            new Circle(500, 240, Color.CadetBlue, 80)
+            new Circle(500, 240, Color.CadetBlue, 80),
+            new EquiLateralTriangle(490, 430, Color.DarkOrchid, 80)
             };
 
             for (int i = 0; i < shapes.Length; i++)

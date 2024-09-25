@@ -54,11 +54,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Circle.cs" />
+    <Compile Include="EquiLateralTriangle.cs" />
+    <Compile Include="IHaveHeight.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rectangle.cs" />
     <Compile Include="Shape.cs" />
     <Compile Include="Square.cs" />
+    <Compile Include="Triangles.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

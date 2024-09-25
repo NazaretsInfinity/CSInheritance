@@ -4,12 +4,13 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace AbstractClass
 {
     internal abstract class Triangles : Shape
     {
         public Triangles(int x, int y, Color color) : base(x, y, color) { }
-        ~Triangles() { }
+        ~Triangles() { }     
     }
 }

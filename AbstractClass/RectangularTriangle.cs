@@ -30,7 +30,7 @@ namespace AbstractClass
 
         public double GetHypotenuse() => Math.Sqrt(Math.Pow(Cathetus1, 2) +  Math.Pow(Cathetus2, 2));
 
-        public double GetHeight() => Cathetus1 * Cathetus2 / GetHypotenuse();
+        public double GetHeight() => (Cathetus1 * Cathetus2) / GetHypotenuse();
 
         public override double Perimeter() => Cathetus1 + Cathetus2 + GetHypotenuse();
         public override double Area() => Cathetus1 * Cathetus2 / 2;

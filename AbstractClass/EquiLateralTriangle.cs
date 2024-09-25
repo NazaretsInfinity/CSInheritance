@@ -22,7 +22,7 @@ namespace AbstractClass
 
         public override double Perimeter() => Side * 3;
 
-        public override double Area() { return 0; }
+        public override double Area() => GetHeight() * Side / 2;
 
         public override void Draw(PaintEventArgs e)
         {
@@ -34,14 +34,14 @@ namespace AbstractClass
         public void DrawHeight(PaintEventArgs e)
         {
             Pen pen = new Pen(Color, 2);
-            e.Graphics.DrawLine(pen, X + (int)side / 2, Y - (int)GetHeight(), X + (int)side / 2, Y);
+            e.Graphics.DrawLine(pen, X + (int)Side / 2, Y - (int)GetHeight(), X + (int)Side / 2, Y);
         }
         public double GetHeight() => Math.Sqrt(Math.Pow(side,2) - Math.Pow(side/2,2));
 
         public override void Info(PaintEventArgs e)
         {
-            Console.WriteLine($"Shape: {GetType().Name};\nPerimeter = {Perimeter()};\nArea = {Area()};" +
-                $"\nSide: {Side}");   
+            base.Info(e);
+            Console.WriteLine($"\nSide: {Side}");   
             Draw(e);
             DrawHeight(e);
         }

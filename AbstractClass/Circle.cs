@@ -49,7 +49,7 @@ namespace AbstractClass
         }
         public override void Info(PaintEventArgs e)
         {
-            Console.WriteLine($"Shape: {GetType().Name};\nPerimeter = {Perimeter()};\nArea = {Area()};");
+            base.Info(e);
             Console.WriteLine($"\nRadius: {Radius}");
             Draw(e);
         }

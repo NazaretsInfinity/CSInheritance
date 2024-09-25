@@ -33,7 +33,8 @@ namespace AbstractClass
              new Rectangle(500, 75, Color.DarkOliveGreen, 100, 60),
             new Square(500, 150, Color.DarkKhaki, 80),
             new Circle(500, 240, Color.CadetBlue, 80),
-            new EquiLateralTriangle(500, 400, Color.DarkOrchid, 80)
+            new EquiLateralTriangle(500, 400, Color.DarkOrchid, 80),
+            new IsoscelesTriangle(600, 240, Color.IndianRed, 80,95),
             };
 
             for (int i = 0; i < shapes.Length; i++)

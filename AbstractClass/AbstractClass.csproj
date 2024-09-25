@@ -56,6 +56,7 @@
     <Compile Include="Circle.cs" />
     <Compile Include="EquiLateralTriangle.cs" />
     <Compile Include="IHaveHeight.cs" />
+    <Compile Include="IsoscelesTriangle.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rectangle.cs" />
